@@ -1,7 +1,6 @@
 #pragma once
 #include <type_traits>
-
-namespace COMPANY_NAME
+namespace Slate
 {	
 	namespace Imp::Concept
 	{

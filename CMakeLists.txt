@@ -1,30 +1,16 @@
-CMake_Minimum_Required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.13)
 
-Project(Concept)
+project(concept)
 
-If(DEFINED TESTING)
-	If(${TESTING} STREQUAL true)
-		Add_Executable(Concept "Test/Main.cpp")
-		Target_Compile_Definitions(Concept PRIVATE TESTING)
-		Add_Subdirectory(Test)
-	Else()
-		Add_Library(Concept INTERFACE)
-	EndIf()
-	Unset(TESTING CACHE)
-ELSE()
-	Add_Library(Concept INTERFACE)
-EndIf()
+add_library(concept INTERFACE)
 
-Add_Subdirectory(Source)
-Add_Subdirectory(Include)
-Add_Subdirectory(Imp)
+add_subdirectory(src)
+add_subdirectory(include)
 
-Target_Compile_Features(Concept 
-    INTERFACE cxx_std_17)
-
-Set(CMAKE_CXX_STANDARD "libc++")
+target_compile_features(concept INTERFACE cxx_std_17)
+	
 #Set(CMAKE_CXX_FLAGS "-Wall" "-Wextra")
 
-Install(TARGETS Concept EXPORT Concept DESTINATION lib/Concept)
-Install(EXPORT Concept DESTINATION lib/Concept)
-Install(FILES ConceptConfig.cmake DESTINATION lib/Concept)
+install(TARGETS concept EXPORT concept DESTINATION lib/concept)
+install(EXPORT concept DESTINATION lib/concept)
+install(FILES concept-config.cmake DESTINATION lib/concept)
